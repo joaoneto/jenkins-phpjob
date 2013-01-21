@@ -29,6 +29,7 @@ Install jenkins (Ubuntu 12.04):
     % sudo sh -c 'echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list'
     % sudo apt-get update
     % sudo apt-get install jenkins
+    % sudo apt-get install ant
     % sudo su jenkins
 ```
 Install plugins:
@@ -45,7 +46,7 @@ Install plugins:
     % git clone git://github.com/joaoneto/jenkins-phpjob.git
 ```
 
-### 4. Configure
+### 4. Create Job
     1. Access http://localhost:8080
     2. Click on "New Job"
     3. Enter a "Job name"
@@ -54,3 +55,7 @@ Install plugins:
     6. Disable the "Disable Build" option
     7. Click "Save"
 
+### 5. Configure your project
+    % cd ~/jobs/"Job name"/workspace
+    % git clone git://your_server/your_project.git
+    % cp ~/jobs/jenkins-phpjob/workspace/build.xml ~/jobs/"Job name"/workspace/build.xml

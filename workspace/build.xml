@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="MyAppName" default="build" basedir=".">
+ <target name="build"
+   depends="prepare,lint,phploc,pdepend,phpcpd,phpunit"/>
+
+ <target name="build-parallel"
+   depends="prepare,lint,tools-parallel,phpunit"/>
+
+ <target name="tools-parallel" description="Run tools in parallel">
+  <parallel threadCount="2">
+   <sequential>
+    <antcall target="pdepend"/>
+    <antcall target="phpmd-ci"/>
+   </sequential>
+   <antcall target="phploc"/>
+  </parallel>
+ </target>
+
+ <target name="clean" description="Cleanup build artifacts">
+  <delete dir="${basedir}/build/coverage"/>
+  <delete dir="${basedir}/build/logs"/>
+  <delete dir="${basedir}/build/pdepend"/>
+ </target>
+
+ <target name="prepare" depends="clean" description="Prepare for build">
+  <mkdir dir="${basedir}/build/coverage"/>
+  <mkdir dir="${basedir}/build/logs"/>
+  <mkdir dir="${basedir}/build/pdepend"/>
+ </target>
+
+ <target name="lint" description="Perform syntax check of sourcecode files">
+  <apply executable="php" failonerror="true">
+   <arg value="-l" />
+
+   <fileset dir="${basedir}">
+    <include name="**/*.php" />
+    <modified />
+   </fileset>
+  </apply>
+ </target>
+
+ <target name="phploc" description="Measure project size using PHPLOC">
+  <exec executable="phploc">
+   <arg value="--log-csv" />
+   <arg value="${basedir}/build/logs/phploc.csv" />
+   <arg path="${basedir}" />
+  </exec>
+ </target>
+
+ <target name="pdepend" description="Calculate software metrics using PHP_Depend">
+  <exec executable="pdepend">
+   <arg value="--jdepend-xml=${basedir}/build/logs/jdepend.xml" />
+   <arg value="--jdepend-chart=${basedir}/build/pdepend/dependencies.svg" />
+   <arg value="--overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg" />
+   <arg path="${basedir}" />
+  </exec>
+ </target>
+
+ <target name="phpmd-ci" description="Perform project mess detection using PHPMD creating a log file for the continuous integration server">
+  <exec executable="phpmd">
+   <arg path="${basedir}" />
+   <arg value="xml" />
+   <arg value="${basedir}/build/phpmd.xml" />
+   <arg value="--reportfile" />
+   <arg value="${basedir}/build/logs/pmd.xml" />
+  </exec>
+ </target>
+
+ <target name="phpcpd" description="Find duplicate code using PHPCPD">
+  <exec executable="phpcpd">
+   <arg value="--log-pmd" />
+   <arg value="${basedir}/build/logs/pmd-cpd.xml" />
+   <arg path="${basedir}" />
+  </exec>
+ </target>
+
+ <target name="phpunit" description="Run unit tests with PHPUnit">
+  <exec executable="phpunit" failonerror="true">
+   <arg value="-c" />
+   <arg path="${basedir}/tests/phpunit.xml" />
+   <arg value="--coverage-clover" />
+   <arg path="${basedir}/build/logs/clover.xml" />
+   <arg path="${basedir}/tests" />
+  </exec>
+ </target>
+</project>
