@@ -34,6 +34,7 @@ Install jenkins (Ubuntu 12.04):
 ```
 Install plugins:
 ```bash
+    % sudo su jenkins
     % cd ~
     % wget http://localhost:8080/jnlpJars/jenkins-cli.jar
     % java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin checkstyle cloverphp dry htmlpublisher jdepend plot pmd violations xunit
@@ -42,6 +43,7 @@ Install plugins:
 
 ### 3. Clone Jenkins PHP Job
 ```bash
+    % sudo su jenkins
     % cd ~/jobs/
     % git clone git://github.com/joaoneto/jenkins-phpjob.git
 ```
@@ -56,6 +58,9 @@ Install plugins:
     7. Click "Save"
 
 ### 5. Configure your project
+```bash
+    % sudo su jenkins
     % cd ~/jobs/"Job name"/workspace
     % git clone git://your_server/your_project.git
     % cp ~/jobs/jenkins-phpjob/workspace/build.xml ~/jobs/"Job name"/workspace/build.xml
+```
