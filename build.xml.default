@@ -44,7 +44,7 @@
   <exec executable="phploc">
    <arg value="--log-csv" />
    <arg value="${basedir}/build/logs/phploc.csv" />
-   <arg path="${basedir}" />
+   <arg path="${basedir}/protected" />
   </exec>
  </target>
 
@@ -53,7 +53,7 @@
    <arg value="--jdepend-xml=${basedir}/build/logs/jdepend.xml" />
    <arg value="--jdepend-chart=${basedir}/build/pdepend/dependencies.svg" />
    <arg value="--overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg" />
-   <arg path="${basedir}" />
+   <arg path="${basedir}/protected" />
   </exec>
  </target>
 
@@ -71,7 +71,7 @@
   <exec executable="phpcpd">
    <arg value="--log-pmd" />
    <arg value="${basedir}/build/logs/pmd-cpd.xml" />
-   <arg path="${basedir}" />
+   <arg path="${basedir}/protected" />
   </exec>
  </target>
 
