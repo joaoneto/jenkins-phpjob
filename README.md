@@ -37,8 +37,8 @@ Install plugins:
     % sudo su jenkins
     % cd ~
     % wget http://localhost:8080/jnlpJars/jenkins-cli.jar
-    % java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin checkstyle cloverphp dry htmlpublisher jdepend plot pmd violations xunit
-    % java -jar jenkins-cli.jar -s http://localhost:8080 safe-restart
+    % java -jar ~/jenkins-cli.jar -s http://localhost:8080 install-plugin checkstyle cloverphp dry htmlpublisher jdepend plot pmd violations xunit
+    % java -jar ~/jenkins-cli.jar -s http://localhost:8080 safe-restart
 ```
 
 ### 3. Clone Jenkins PHP Job
@@ -46,6 +46,7 @@ Install plugins:
     % sudo su jenkins
     % cd ~/jobs/
     % git clone git://github.com/joaoneto/jenkins-phpjob.git
+    % java -jar ~/jenkins-cli.jar -s http://localhost:8080 restart
 ```
 
 ### 4. Create Job
