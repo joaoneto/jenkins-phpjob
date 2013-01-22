@@ -63,5 +63,5 @@ Install plugins:
     % sudo su jenkins
     % cd ~/jobs/"Job name"/workspace
     % git clone git://your_server/your_project.git
-    % cp ~/jobs/jenkins-phpjob/workspace/build.xml ~/jobs/"Job name"/workspace/build.xml
+    % cp ~/jobs/"Job name"/build.xml.default ~/jobs/"Job name"/workspace/build.xml
 ```
