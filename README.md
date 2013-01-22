@@ -64,4 +64,5 @@ Install plugins:
     % cd ~/jobs/"Job name"/workspace
     % git clone git://your_server/your_project.git
     % cp ~/jobs/"Job name"/build.xml.default ~/jobs/"Job name"/workspace/build.xml
+    % java -jar ~/jenkins-cli.jar -s http://localhost:8080 restart
 ```
