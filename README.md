@@ -63,6 +63,14 @@ Install plugins:
     % sudo su jenkins
     % cd ~/jobs/"Job name"/workspace
     % git clone git://your_server/your_project.git
+```
+
+
+### 6. Finally
+```bash
     % cp ~/jobs/"Job name"/build.xml.default ~/jobs/"Job name"/workspace/build.xml
+```
+NOTE: Change some paths in ~/jobs/"Job name"/build.xml
+```bash
     % java -jar ~/jenkins-cli.jar -s http://localhost:8080 restart
 ```
