@@ -34,7 +34,7 @@
    <arg value="-l" />
 
    <fileset dir="${basedir}">
-    <include name="**/*.php" />
+    <include name="${baseDir}/protected/**/*.php" />
     <modified />
    </fileset>
   </apply>
@@ -78,7 +78,7 @@
  <target name="phpunit" description="Run unit tests with PHPUnit">
   <exec executable="phpunit" failonerror="true">
    <arg value="-c" />
-   <arg path="${basedir}/tests/phpunit.xml" />
+   <arg path="${basedir}/protected/tests/phpunit.xml" />
    <arg value="--coverage-clover" />
    <arg path="${basedir}/build/logs/clover.xml" />
    <arg path="${basedir}/tests" />
